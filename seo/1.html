@@ -1,0 +1,33 @@
+<!doctype html><html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simpro与Xero自动同步发票避坑指南 — 自动化配方库</title>
+<meta name="description" content="刚把 Simpro 和 Xero 打通同步,感觉像打通了任督二脉——结果发票重复、税码对不上、付款状态乱跑,账反而越对越乱。这篇是踩过坑之后的真实总结,帮你少走弯路。">
+<meta property="og:type" content="article"><meta property="og:title" content="Simpro与Xero自动同步发票避坑指南 — 自动化配方库">
+<style>
+:root{--ink:#0d1b2a;--bg:#f5f8fb;--card:#fff;--teal:#0b7d73;--muted:#5a6b7b;--line:#e3eaf1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC",system-ui,sans-serif;color:var(--ink);
+background:var(--bg);line-height:1.75;-webkit-text-size-adjust:100%}
+.wrap{max-width:680px;margin:0 auto;padding:24px 20px 60px}
+.back{display:inline-block;color:var(--teal);text-decoration:none;font-size:.9rem;margin-bottom:20px}
+h1{font-size:clamp(1.5rem,1.2rem+2vw,2rem);line-height:1.25;letter-spacing:-.02em;margin-bottom:16px}
+.intro{font-size:1.08rem;color:#26323f;margin-bottom:8px}
+h2{font-size:1.15rem;margin:26px 0 6px;letter-spacing:-.01em}
+p{margin-bottom:6px;color:#2c3a47}
+.takeaway{background:#e3f4f1;border-left:3px solid var(--teal);border-radius:10px;
+padding:16px 18px;margin:28px 0;font-weight:600}
+.cta{display:block;text-align:center;background:linear-gradient(135deg,#0e9488,#0b7d73);
+color:#fff;text-decoration:none;font-weight:700;padding:15px;border-radius:12px;margin:24px 0}
+.disc{background:#fff8ec;border:1px solid #f4e3c1;color:#7a5c1e;border-radius:10px;
+padding:12px 14px;font-size:.82rem;line-height:1.6;margin-top:24px}
+footer{color:#8a98a6;font-size:.78rem;margin-top:20px;text-align:center}
+</style></head><body><div class="wrap">
+<a class="back" href="../index.html">← 回到 自动化配方库</a>
+<h1>Simpro与Xero自动同步发票避坑指南</h1>
+<p class="intro">刚把 Simpro 和 Xero 打通同步,感觉像打通了任督二脉——结果发票重复、税码对不上、付款状态乱跑,账反而越对越乱。这篇是踩过坑之后的真实总结,帮你少走弯路。</p>
+<h2>先搞懂同步是单向还是双向</h2><p>Simpro 推数据到 Xero 是默认行为,但如果你在 Xero 那头改了发票金额或备注,改动不会自动回流到 Simpro。两边手动改过的记录最容易打架,改之前要想清楚「谁是数据的唯一源头」,定好规矩再动手。</p><h2>税码映射没做好,GST 会出大问题</h2><p>Simpro 里的税率和 Xero 的 Tax Code 要一一对应好,这一步很多人跳过了。最常见的坑是含 GST 的项目映射到了 Xero 免税的 Code 上,BAS 一出来就差一截。设置完之后一定要用一张真实发票人工核对一遍数字,别只靠系统说「成功」就信了。</p><h2>发票状态不一致是正常现象</h2><p>Xero 里标了「已付」,Simpro 那边不一定同步更新,反过来也一样。能不能开双向状态回写、怎么配置,各版本和套餐差异较大,以 Simpro 官方文档或持牌实施顾问为准。自己瞎改同步设置很容易造成状态混乱,改一个地方要想清楚对另一边的影响。</p><h2>重复发票是这样跑出来的</h2><p>最常见两个原因:一是同一张发票在 Xero 手动建了一次,又让 Simpro 自动推了一次;二是误触了全量重新同步,历史记录又推了一遍。解决方案很简单——发票只在一个系统里创建,另一个只读不写,形成习惯之后重复问题基本消失。</p><h2>出错了先查这两个日志</h2><p>Simpro 的 Integration Log 会记录每次同步的结果和报错,是排查问题的第一入口。Xero 那边看 Activity Log 和 History & Notes。两边日志对照着看,大部分问题能定位到具体那张发票。看不懂的报错不要凭感觉乱改设置,直接联系 Simpro 官方支持或持牌顾问效率更高。</p>
+<div class="takeaway">👉 上线前先用一两张测试发票跑一遍全流程,确认税码、金额、付款状态三样都对了,再放开正式批量同步——事后修数据比预防要痛苦十倍。</div>
+<a class="cta" href="../index.html#join">想要完整避坑清单 + 内测?点这里 →</a>
+<div class="disc">⚠️ 本文为面向在澳华人的经验参考,非移民法律意见。具体政策、分数、费用、条款以官方(immi.homeaffairs.gov.au)及持牌移民代理/律师为准。</div>
+<footer>© 自动化配方库</footer>
+</div></body></html>

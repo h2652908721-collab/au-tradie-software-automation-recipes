@@ -1,0 +1,33 @@
+<!doctype html><html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tradify API集成常见问题和解决方案汇总 — 自动化配方库</title>
+<meta name="description" content="在澳洲做生意的华人老板，不少人在用 Tradify 管工单、报价、发票，用着用着就想把它跟自己的财务系统或者自建工具打通。结果一碰 API 就头大——文档看得懂，代码跑不通；跑通了，数据对不上；数据对上了，隔几天又断掉了。这篇文章把几个最常踩的坑整理出来，省得你走冤枉路。">
+<meta property="og:type" content="article"><meta property="og:title" content="Tradify API集成常见问题和解决方案汇总 — 自动化配方库">
+<style>
+:root{--ink:#0d1b2a;--bg:#f5f8fb;--card:#fff;--teal:#0b7d73;--muted:#5a6b7b;--line:#e3eaf1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC",system-ui,sans-serif;color:var(--ink);
+background:var(--bg);line-height:1.75;-webkit-text-size-adjust:100%}
+.wrap{max-width:680px;margin:0 auto;padding:24px 20px 60px}
+.back{display:inline-block;color:var(--teal);text-decoration:none;font-size:.9rem;margin-bottom:20px}
+h1{font-size:clamp(1.5rem,1.2rem+2vw,2rem);line-height:1.25;letter-spacing:-.02em;margin-bottom:16px}
+.intro{font-size:1.08rem;color:#26323f;margin-bottom:8px}
+h2{font-size:1.15rem;margin:26px 0 6px;letter-spacing:-.01em}
+p{margin-bottom:6px;color:#2c3a47}
+.takeaway{background:#e3f4f1;border-left:3px solid var(--teal);border-radius:10px;
+padding:16px 18px;margin:28px 0;font-weight:600}
+.cta{display:block;text-align:center;background:linear-gradient(135deg,#0e9488,#0b7d73);
+color:#fff;text-decoration:none;font-weight:700;padding:15px;border-radius:12px;margin:24px 0}
+.disc{background:#fff8ec;border:1px solid #f4e3c1;color:#7a5c1e;border-radius:10px;
+padding:12px 14px;font-size:.82rem;line-height:1.6;margin-top:24px}
+footer{color:#8a98a6;font-size:.78rem;margin-top:20px;text-align:center}
+</style></head><body><div class="wrap">
+<a class="back" href="../index.html">← 回到 自动化配方库</a>
+<h1>Tradify API集成常见问题和解决方案汇总</h1>
+<p class="intro">在澳洲做生意的华人老板，不少人在用 Tradify 管工单、报价、发票，用着用着就想把它跟自己的财务系统或者自建工具打通。结果一碰 API 就头大——文档看得懂，代码跑不通；跑通了，数据对不上；数据对上了，隔几天又断掉了。这篇文章把几个最常踩的坑整理出来，省得你走冤枉路。</p>
+<h2>API 密钥失效或权限不够</h2><p>Tradify 的 API 认证靠 token，但很多人拿到 token 之后直接硬编码进代码里，结果 token 过期或者被重置就整条链路挂掉。建议把 token 存进环境变量或者密钥管理服务，不要写死。另外不同套餐的 API 权限范围不一样，某些端点你调不通，先确认自己的账户级别是否支持，具体以 Tradify 官方文档或客服为准。</p><h2>请求频率被限流，返回 429</h2><p>Tradify 有请求频率限制，批量同步数据时很容易触发。遇到 429 错误不要一直重试，要在代码里加退避逻辑，比如等几秒再发。具体限流阈值官方偶尔会调整，以当前官方文档为准，不要靠猜。如果业务量大，建议跟 Tradify 支持团队沟通是否有更高配额方案。</p><h2>Webhook 数据没收到或重复收到</h2><p>不少人配了 Webhook 等推送，结果发现事件漏了或者同一条数据收了好几次。漏消息通常是因为自己的服务器响应太慢，Tradify 超时后不再重发；重复收到则是服务器没有及时返回 200。解决方法是：收到 Webhook 立刻返回 200，再异步处理业务逻辑，同时用事件 ID 做幂等去重。</p><h2>数据字段映射对不上</h2><p>Tradify 里的「客户」「工单」「发票」字段，跟 Xero、MYOB 或者自建系统的字段命名往往不一样，直接套会出现空值或者类型错误。建议在集成层专门写一个字段映射表，不要让业务逻辑直接依赖 API 原始字段名。Tradify 的字段有时会随版本更新变化，留意官方的 changelog。</p><h2>沙箱环境与正式环境行为不一致</h2><p>在沙箱测完感觉没问题，上到正式环境就出问题——这种情况比较普遍。原因可能是两个环境的数据结构版本不同步，也可能是正式账户的权限配置跟测试账户不一样。上线前最好在正式环境跑一轮小规模真实测试，不要完全依赖沙箱结果。</p>
+<div class="takeaway">👉 先把 Tradify 官方 API 文档和你现有系统的字段逐一对照，画一张映射表，再动手写集成代码——这一步花两小时，能省掉后面反复调试的两天。</div>
+<a class="cta" href="../index.html#join">想要完整避坑清单 + 内测?点这里 →</a>
+<div class="disc">⚠️ 本文为面向在澳华人的经验参考,非移民法律意见。具体政策、分数、费用、条款以官方(immi.homeaffairs.gov.au)及持牌移民代理/律师为准。</div>
+<footer>© 自动化配方库</footer>
+</div></body></html>
