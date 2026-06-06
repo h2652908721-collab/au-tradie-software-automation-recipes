@@ -1,0 +1,70 @@
+{
+  "brand": "RecipeHub",
+  "tagline": "Automation recipes for Australian tradies — skip the pitfalls",
+  "hero_headline": "Your automation breaks every time an API updates — what's the fix?",
+  "hero_sub": "Production-tested recipes for ServiceM8, Simpro, AroFlo & more — complete with every pitfall we've hit",
+  "pains": [
+    "Set up automation, API updates, everything breaks — no idea how to debug",
+    "Official docs skip the gotchas — rate limits, duplicate runs, API quirks that waste your time",
+    "You don't know which recipes work natively — which ones need Zapier or Make"
+  ],
+  "features": [
+    {
+      "title": "Real Australian tradie recipes",
+      "desc": "Step-by-step automations for ServiceM8, Simpro, AroFlo, Tradify & Fergus"
+    },
+    {
+      "title": "The pitfall journal",
+      "desc": "API versions that break, rate-limit gotchas, edge cases — solutions for all of them"
+    },
+    {
+      "title": "Native vs. add-on breakdown",
+      "desc": "Each recipe labeled: works natively or requires Zapier/Make"
+    },
+    {
+      "title": "Done-for-you setup",
+      "desc": "Worried about misconfiguration? We build it for you — one-time fee, works forever"
+    }
+  ],
+  "how": [
+    {
+      "step": "Find your software",
+      "desc": "Search for ServiceM8 + auto-review requests and find the recipe"
+    },
+    {
+      "step": "Follow the steps",
+      "desc": "Pitfall warnings live in the guide — dodge every hole our customers hit"
+    },
+    {
+      "step": "Deploy with confidence",
+      "desc": "Recipes marked 'verified' — we notify you if an API changes"
+    }
+  ],
+  "proof": "Currently live in Australian tradie operations — first users' feedback shapes what we build next",
+  "cta": "Join the beta →",
+  "cta_sub": "✓ Early access users lock in lifetime Pro pricing — your feedback decides our roadmap",
+  "faq": [
+    {
+      "q": "Does it cover my software?",
+      "a": "Starting with ServiceM8, Simpro, AroFlo, Tradify & Fergus — expanded based on beta demand"
+    },
+    {
+      "q": "What if an API update breaks my recipe?",
+      "a": "We continuously update; broken recipes marked 'needs refresh' with a fix or workaround"
+    },
+    {
+      "q": "Do I pay during beta?",
+      "a": "Beta is free; launching with Free / Pro (includes pitfall journal) / Done-for-You tiers"
+    }
+  ],
+  "seo_pages": [
+    "How to auto-send review requests in ServiceM8 — complete walkthrough",
+    "Sync Simpro to Xero invoices automatically — all the pitfalls",
+    "Auto-follow up AroFlo quotes the right way — step-by-step",
+    "Australian tradie workflow automation — the full pitfall guide",
+    "Zapier vs. Make for Australian tradie software — feature comparison",
+    "Tradify API integration — FAQs and working solutions"
+  ],
+  "disclaimer": "⚠️ This is a reference tool. Before using any recipe, confirm it complies with your software's terms and official policies.",
+  "lang": "en"
+}
